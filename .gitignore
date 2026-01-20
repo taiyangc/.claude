@@ -1,0 +1,28 @@
+# Conversation history (contains sensitive data)
+history.jsonl
+
+# Project-specific settings (contains local paths and project data)
+projects/
+
+# Session and runtime data
+cache/
+debug/
+file-history/
+plans/
+session-env/
+shell-snapshots/
+todos/
+ide/
+
+# Analytics and telemetry
+stats-cache.json
+statsig/
+
+# Plugin caches (can be re-downloaded)
+plugins/install-counts-cache.json
+plugins/known_marketplaces.json
+plugins/marketplaces/
+plugins/repos/
+
+# OS-specific
+.DS_Store
