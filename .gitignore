@@ -18,11 +18,11 @@ ide/
 stats-cache.json
 statsig/
 
-# Plugin caches (can be re-downloaded)
-plugins/install-counts-cache.json
-plugins/known_marketplaces.json
-plugins/marketplaces/
-plugins/repos/
+# Plugins (local state and caches)
+plugins/
 
 # OS-specific
 .DS_Store
+
+# Ignore claude's settings inside .claude :)
+.claude/
