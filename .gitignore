@@ -5,7 +5,7 @@ history.jsonl
 projects/
 
 # Session and runtime data
-cache/
+*cache/
 debug/
 file-history/
 plans/
