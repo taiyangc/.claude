@@ -21,6 +21,9 @@ statsig/
 # Plugins (local state and caches)
 plugins/
 
+# Tasks
+tasks/
+
 # OS-specific
 .DS_Store
 
