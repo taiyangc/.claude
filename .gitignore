@@ -13,6 +13,8 @@ session-env/
 shell-snapshots/
 todos/
 ide/
+backups/
+mcp-needs-auth-cache.json
 
 # Analytics and telemetry
 stats-cache.json
