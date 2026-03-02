@@ -5,6 +5,7 @@
 - When fixing warnings, never add a lint suppress hint without asking for permissions.
 - When fixing warnings, always remove unused things instead of simply commmenting out.
 - Never add disable-next-line lint-disable without user approval.
+- Never use `--ir-minimum` to work around stack-too-deep or via_ir issues. Fix stack depth at the source (scoped blocks, helper extraction) instead.
 
 ## Code
 - require() should always use custom errors.
