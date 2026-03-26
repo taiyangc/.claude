@@ -1,6 +1,6 @@
 {
   "env": {
-    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "64000"
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "128000"
   },
   "permissions": {
     "allow": [
@@ -68,7 +68,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "input=$(cat); user=$(whoami); cwd=$(echo \"$input\" | jq -r '.workspace.current_dir' | sed \"s|$HOME|~|g\"); model=$(echo \"$input\" | jq -r '.model.display_name'); time=$(date +%H:%M); remaining=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); transcript=$(echo \"$input\" | jq -r '.transcript_path'); todo_count=$([ -f \"$transcript\" ] && grep -c '\"type\":\"todo\"' \"$transcript\" 2>/dev/null || echo 0); cost=$(echo \"$input\" | jq -r '.cost.total_cost_usd // empty'); lines_added=$(echo \"$input\" | jq -r '.cost.total_lines_added // empty'); lines_removed=$(echo \"$input\" | jq -r '.cost.total_lines_removed // empty'); duration_ms=$(echo \"$input\" | jq -r '.cost.total_duration_ms // empty'); cd \"$(echo \"$input\" | jq -r '.workspace.current_dir')\" 2>/dev/null; branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo ''); status=''; [ -n \"$branch\" ] && { [ -n \"$(git status --porcelain 2>/dev/null)\" ] && status='*'; }; B='\\033[38;2;30;102;245m'; G='\\033[38;2;64;160;43m'; Y='\\033[38;2;223;142;29m'; M='\\033[38;2;136;57;239m'; C='\\033[38;2;23;146;153m'; R='\\033[0m'; T='\\033[38;2;76;79;105m'; Rd='\\033[38;2;210;77;77m'; printf \"${C}${user}${R}:${B}${cwd}${R}\"; [ -n \"$branch\" ] && printf \" ${G}${branch}${Y}${status}${R}\"; [ -n \"$remaining\" ] && printf \" ${M}ctx:${remaining}%%${R}\"; printf \" ${T}${model}${R} ${Y}${time}${R}\"; [ -n \"$cost\" ] && printf \" ${C}\\$%.2f${R}\" \"$cost\"; { [ -n \"$lines_added\" ] || [ -n \"$lines_removed\" ]; } && { la=${lines_added:-0}; lr=${lines_removed:-0}; printf \" ${G}+${la}${R}/${Rd}-${lr}${R}\"; }; [ -n \"$duration_ms\" ] && { ds=$((duration_ms / 1000)); dm=$((ds / 60)); dh=$((dm / 60)); if [ \"$dh\" -gt 0 ]; then drm=$((dm % 60)); printf \" ${T}${dh}h${drm}m${R}\"; else printf \" ${T}${dm}m${R}\"; fi; }; [ \"$todo_count\" -gt 0 ] && printf \" ${C}todos:${todo_count}${R}\"; echo"
+    "command": "input=$(cat); user=$(whoami); cwd=$(echo \"$input\" | jq -r '.workspace.current_dir' | sed \"s|$HOME|~|g\"); model=$(echo \"$input\" | jq -r '.model.display_name'); time=$(date +%H:%M); remaining=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); transcript=$(echo \"$input\" | jq -r '.transcript_path'); todo_count=$([ -f \"$transcript\" ] && grep -c '\"type\":\"todo\"' \"$transcript\" 2>/dev/null || echo 0); cost=$(echo \"$input\" | jq -r '.cost.total_cost_usd // empty'); lines_added=$(echo \"$input\" | jq -r '.cost.total_lines_added // empty'); lines_removed=$(echo \"$input\" | jq -r '.cost.total_lines_removed // empty'); duration_ms=$(echo \"$input\" | jq -r '.cost.total_duration_ms // empty'); cd \"$(echo \"$input\" | jq -r '.workspace.current_dir')\" 2>/dev/null; branch=$(git --no-optional-locks rev-parse --abbrev-ref HEAD 2>/dev/null || echo ''); status=''; [ -n \"$branch\" ] && { [ -n \"$(git --no-optional-locks status --porcelain 2>/dev/null)\" ] && status='*'; }; B='\\033[38;2;30;102;245m'; G='\\033[38;2;64;160;43m'; Y='\\033[38;2;223;142;29m'; M='\\033[38;2;136;57;239m'; C='\\033[38;2;23;146;153m'; R='\\033[0m'; T='\\033[38;2;76;79;105m'; Rd='\\033[38;2;210;77;77m'; printf \"${C}${user}${R}:${B}${cwd}${R}\"; [ -n \"$branch\" ] && printf \" ${G}${branch}${Y}${status}${R}\"; [ -n \"$remaining\" ] && printf \" ${M}ctx:${remaining}%%${R}\"; printf \" ${T}${model}${R} ${Y}${time}${R}\"; [ -n \"$cost\" ] && printf \" ${C}\\$%.2f${R}\" \"$cost\"; { [ -n \"$lines_added\" ] || [ -n \"$lines_removed\" ]; } && { la=${lines_added:-0}; lr=${lines_removed:-0}; printf \" ${G}+${la}${R}/${Rd}-${lr}${R}\"; }; [ -n \"$duration_ms\" ] && { ds=$((duration_ms / 1000)); dm=$((ds / 60)); dh=$((dm / 60)); if [ \"$dh\" -gt 0 ]; then drm=$((dm % 60)); printf \" ${T}${dh}h${drm}m${R}\"; else printf \" ${T}${dm}m${R}\"; fi; }; [ \"$todo_count\" -gt 0 ] && printf \" ${C}todos:${todo_count}${R}\"; echo"
   },
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
@@ -78,5 +78,6 @@
     "claude-md-management@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "autoDreamEnabled": true
 }
