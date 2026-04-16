@@ -21,6 +21,7 @@ mcp-needs-auth-cache.json
 stats-cache.json
 statsig/
 telemetry/
+security_warnings_*
 
 # Plugins (local state and caches)
 plugins/

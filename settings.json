@@ -78,6 +78,6 @@
     "claude-md-management@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "high",
+  "effortLevel": "max",
   "autoDreamEnabled": true
 }
