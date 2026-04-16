@@ -25,6 +25,7 @@ security_warnings_*
 
 # Plugins (local state and caches)
 plugins/
+vercel-plugin-*
 
 # Tasks
 tasks/
