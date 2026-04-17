@@ -6,13 +6,33 @@
     "allow": [
       "Bash",
       "WebSearch",
-      "WebFetch"
+      "WebFetch",
+      "mcp__github__issue_write",
+      "mcp__github__get_me",
+      "Skill(commit-commands:commit)",
+      "mcp__plugin_vercel_vercel__list_teams",
+      "mcp__plugin_vercel_vercel__list_projects",
+      "mcp__plugin_vercel_vercel__get_runtime_logs",
+      "mcp__plugin_vercel_vercel__get_deployment",
+      "mcp__plugin_vercel_vercel__get_deployment_build_logs",
+      "mcp__plugin_vercel_vercel__web_fetch_vercel_url",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "mcp__plugin_playwright_playwright__browser_click",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "mcp__plugin_playwright_playwright__browser_resize",
+      "mcp__plugin_playwright_playwright__browser_close",
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "mcp__plugin_playwright_playwright__browser_run_code",
+      "mcp__plugin_playwright_playwright__browser_hover",
+      "mcp__plugin_playwright_playwright__browser_wait_for"
     ],
     "deny": [],
     "ask": [
       "Skill(plugin-skill-name)",
       "Skill(plugin-skill-prefix:*)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "hooks": {
     "Stop": [
@@ -79,5 +99,6 @@
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "xhigh",
-  "autoDreamEnabled": true
+  "autoDreamEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
