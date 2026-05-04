@@ -98,7 +98,7 @@
     "claude-md-management@claude-plugins-official": true
   },
   "alwaysThinkingEnabled": true,
-  "effortLevel": "xhigh",
+  "effortLevel": "max",
   "autoDreamEnabled": true,
   "skipAutoPermissionPrompt": true
 }
