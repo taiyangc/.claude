@@ -35,3 +35,6 @@ tasks/
 
 # Ignore claude's settings inside .claude :)
 .claude/
+daemon*
+jobs/
+.last-cleanup

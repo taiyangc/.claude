@@ -101,6 +101,32 @@ specifically to file-I/O cheatcodes.
 - Never implement a looped array item removal since the array can grow
   indefinitely, always do a map removal for O(1).
 
+## No dead branches
+
+If every caller has already gated on a condition, do NOT also handle the
+falsified case "defensively" further down the call chain by returning a
+sentinel (e.g. `return (false, 0, 0)`). Two failure modes is one too many:
+the dead branch tricks future readers into thinking it's load-bearing and
+adds an extra return tuple element that propagates back to call sites that
+must `if (success) ...` — itself dead code.
+
+Instead:
+
+- **Replace `if (cond) return (false, ...)` with `require(!cond, …)`** —
+  same revert semantics, no dead-tuple slot, no sentinel propagating up.
+- **Drop the `success` return value** — if the function only ever returns
+  `true` on the happy path, it shouldn't return a `bool` at all. Update
+  callers to drop the `if (success)` check; if the call returns at all, it
+  succeeded.
+- **Keep one short comment at the require** that says *why* the gate
+  upstream makes this branch a belt-and-suspenders guard, so a future
+  reader doesn't try to "fix" the same dead-branch back in.
+
+Sentinel returns make sense only when the caller is *expected* to handle
+both outcomes (e.g. permissionless batch loops that genuinely want to skip
+the failure case and continue). When every caller is required to revert on
+failure, revert directly.
+
 ## No audit-finding ID tags in code
 
 NEVER include audit-finding identifiers in any source file. This means
