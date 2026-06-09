@@ -38,3 +38,4 @@ tasks/
 daemon*
 jobs/
 .last-cleanup
+security/
