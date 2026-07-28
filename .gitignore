@@ -19,7 +19,7 @@ mcp-needs-auth-cache.json
 daemon*
 jobs/
 gh-*.json
-.last-cleanup
+.last*
 
 # Analytics and telemetry
 stats-cache.json
