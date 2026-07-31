@@ -1,3 +1,9 @@
+---
+paths:
+  - "**/*.sol"
+  - "**/foundry.toml"
+---
+
 # Solidity Standards
 
 Universal Solidity / Foundry rules. Project-specific paths, CI step names,
