@@ -34,7 +34,11 @@ and helper-contract names belong in the project's own Solidity rule file
   the code.
 - When fixing warnings, always remove unused things instead of simply
   commenting out.
-- `forge build` at HEAD must emit **zero** `note[unsafe-cheatcode]` findings.
+- The tree at HEAD must carry **zero** `note[unsafe-cheatcode]` findings. Read
+  that from a check that selects the lint and exits non-zero — not from
+  `forge build`'s output, which a build step may legitimately have turned off
+  (see "Silencing a finding and choosing which command reports it are
+  different" below).
 
 ### Never suppress forge-lint findings by any means
 
@@ -45,8 +49,10 @@ always a **real code change** that removes the dangerous pattern.
   `forge-lint: disable-line(…)`, `forge-lint: disable(…)`, or any other
   inline hint.
 - **Project-level suppressions forbidden**: no `[lint] exclude_lints`, no
-  `[lint] severity`, no `[lint] lint_on_build = false`, no other
-  `foundry.toml` flag that silences a lint.
+  `[lint] severity`, no `[lint] ignore`, no `[lint] lint_on_build = false`, no
+  other `foundry.toml` flag that silences a lint. (`forge build --no-lint` on
+  a *build step* is a different thing and is governed below — it changes which
+  command reports, not whether anything reads.)
 - **Selective-run workarounds forbidden**: do not invoke
   `forge lint --only-lint …`, `forge lint --severity …`, or any flag that
   skips the default lint set as a workaround for a specific finding.
@@ -66,6 +72,53 @@ Real code fixes for common findings:
 suppress. They are requests for compliant code. If you cannot find a real
 code fix for a warning, **stop and ask the user** — do not reach for
 suppression.
+
+#### Silencing a finding and choosing which command reports it are different
+
+The ban above is on a finding ceasing to be **read**. It is not a rule that
+every command which happens to compile must also print the whole lint set.
+
+Forge 1.8.0 runs a lint pass at the end of `forge build` and prints it to
+stderr. On a large package that is thousands of findings on every build,
+including a fully cached one — and it **fails nothing**, because `forge lint`
+exits 0 whatever it finds. A pre-push hook that prints fifteen thousand lines
+and gates on none of them is not a strict posture; it is the worst available
+one, because nobody reads it and nothing catches a new finding.
+
+So `forge build --no-lint` (documented: "Skip the post-build lint step for
+this invocation") is **permitted on a build step, and only under this
+condition**:
+
+> A check in the same repository runs `forge lint` over the same file set,
+> classifies every finding, and **fails** on any the project has not already
+> accepted in a committed baseline.
+
+Without that check, `--no-lint` is a suppression and is forbidden. With it,
+the finding is read by something that can fail, and the build stops printing a
+second copy that cannot.
+
+Still forbidden, and each for its own reason:
+
+- **`[lint] lint_on_build = false` in `foundry.toml`** — same effect, wrong
+  scope. It is unconditional and applies to a bare `forge build` typed by
+  hand, which is where somebody looking at the lint surface directly should
+  still see all of it. The flag is per-invocation and, being documented, gives
+  an unknown-flag error if a future forge removes it rather than silently
+  restoring the flood.
+- **`FOUNDRY_LINT_ON_BUILD` / `FOUNDRY_LINT_LINT_ON_BUILD`** — the documented
+  name does not work and the working name is undocumented (measured against
+  1.8.0). A mechanism keyed on a name the docs get wrong fails silently the
+  day it is corrected.
+- **`[lint] exclude_lints`, `[lint] severity`, `[lint] ignore`** — these
+  narrow what is *known*, not what is repeated. `severity` in particular reads
+  like a volume knob and is not one: it drops whole buckets from `forge lint`
+  too, so the gate above would stop seeing them.
+- **Every inline `// forge-lint: disable-*` directive.** Measured against
+  1.8.0, all five forms work — `disable-line`, `disable-next-line`,
+  `disable-next-item` (the whole following function, body included),
+  and `disable-start` / `disable-end` ranges — for every rule, with a bare
+  form that disables all of them. That reach is the reason the ban holds
+  rather than a reason to relax it.
 
 Also prohibited with the same framing:
 - `--ir-minimum` to work around stack-too-deep or via_ir issues. Fix stack

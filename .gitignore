@@ -2,6 +2,7 @@
 history.jsonl
 
 # Project-specific settings (contains local paths and project data)
+projects
 projects/
 
 # Session and runtime data
