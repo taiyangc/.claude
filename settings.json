@@ -208,5 +208,6 @@
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
   "autoDreamEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "model": "claude-fable-5-1[1m]"
 }

@@ -9,7 +9,7 @@ A failing test that was allowed to go unaddressed is often *why* a bug was able 
 ### What to do when you see a failing test
 
 1. **Fix it** — ideally restore the test so it passes against current code.
-2. **If the test is genuinely dead** (references deleted constants, exercises removed features, points to a file that no longer exists), delete the test file in the same commit. Do not leave it in the tree with a skip/xfail marker unless the user explicitly asks for it.
+2. **If the test is genuinely dead** (references deleted constants, exercises removed features, points to a file that no longer exists), delete the test file in the same commit. Do not leave it in the tree with a skip/xfail marker unless the user explicitly asks for it. A project rule that suspends a check with a named re-enable condition counts as the user explicitly asking — leave those dark; do not delete or "fix" them.
 3. **If fixing requires a product decision** (e.g. "this assertion about a UX rule is now ambiguous"), surface it to the user and propose both a fix and a deletion. Don't let ambiguity be a reason to defer.
 
 ### Scope
