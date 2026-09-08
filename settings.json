@@ -67,7 +67,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/eric/.config/iterm2/cc-status"
+            "command": "/Users/eric/.config/iterm2/cc-status",
+            "async": true
           }
         ]
       }
@@ -86,7 +87,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/eric/.config/iterm2/cc-status"
+            "command": "/Users/eric/.config/iterm2/cc-status",
+            "async": true
           }
         ]
       }
@@ -96,7 +98,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/eric/.config/iterm2/cc-status"
+            "command": "/Users/eric/.config/iterm2/cc-status",
+            "async": true
           }
         ]
       }
@@ -106,7 +109,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/eric/.config/iterm2/cc-status"
+            "command": "/Users/eric/.config/iterm2/cc-status",
+            "async": true
           }
         ]
       }
@@ -116,7 +120,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/eric/.config/iterm2/cc-status"
+            "command": "/Users/eric/.config/iterm2/cc-status",
+            "async": true
           }
         ]
       }
@@ -126,7 +131,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/eric/.config/iterm2/cc-status"
+            "command": "/Users/eric/.config/iterm2/cc-status",
+            "async": true
           }
         ]
       }
@@ -144,7 +150,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/eric/.config/iterm2/cc-status"
+            "command": "/Users/eric/.config/iterm2/cc-status",
+            "async": true
           }
         ]
       }
@@ -154,7 +161,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/eric/.config/iterm2/cc-status"
+            "command": "/Users/eric/.config/iterm2/cc-status",
+            "async": true
           }
         ]
       }
@@ -164,7 +172,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/eric/.config/iterm2/cc-status"
+            "command": "/Users/eric/.config/iterm2/cc-status",
+            "async": true
           }
         ]
       }
@@ -174,7 +183,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/eric/.config/iterm2/cc-status"
+            "command": "/Users/eric/.config/iterm2/cc-status",
+            "async": true
           }
         ]
       }
@@ -208,6 +218,5 @@
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
   "autoDreamEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "model": "claude-fable-5-1[1m]"
+  "skipAutoPermissionPrompt": true
 }
