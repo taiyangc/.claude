@@ -21,6 +21,8 @@ daemon*
 jobs/
 gh-*.json
 .last*
+state/
+feedback/
 
 # Analytics and telemetry
 stats-cache.json
@@ -33,6 +35,13 @@ security/
 plugins/
 vercel-plugin-*
 chrome/
+
+# Skills synced from claude.ai (your own skills/<name>/ stay tracked)
+skills/synced/
+
+# Machine-local settings and credentials
+settings.local.json
+.credentials.json
 
 # Tasks
 tasks/
