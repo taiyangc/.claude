@@ -37,6 +37,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "claude-opus-5-5[1m]",
   "hooks": {
     "Notification": [
       {
@@ -221,6 +222,7 @@
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
   "autoDreamEnabled": true,
+  "remoteControlAtStartup": true,
   "skipAutoPermissionPrompt": true,
-  "model": "claude-opus-5-5[1m]"
+  "crossSessionInbound": "accept"
 }
